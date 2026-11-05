@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2027 대한민국 재테크 박람회 특별 강연 - 조선멤버십 회원 초청</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-dark: #172554;
+      --accent: #2563eb;
+      --gold: #d97706;
+      --gold-light: #fef3c7;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px -2px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #0f172a;
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background-color: var(--bg);
+      min-height: 100vh;
+      box-shadow: 0 0 40px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* 상단 일러스트 배너 */
+    .banner-wrapper {
+      position: relative;
+      width: 100%;
+      background-color: #9ed6c5;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .banner-wrapper svg,
+    .banner-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 헤더 콘텐츠 */
+    .header-content {
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .badge-primary {
+      background: #eff6ff;
+      color: var(--accent);
+      border: 1px solid #bfdbfe;
+    }
+
+    .badge-gold {
+      background: var(--gold-light);
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .main-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.38;
+      color: #091e42;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+    }
+
+    .sub-desc {
+      font-size: 14.5px;
+      line-height: 1.62;
+      color: var(--text-muted);
+      word-break: keep-all;
+    }
+
+    .sub-desc p {
+      margin-bottom: 10px;
+    }
+
+    .sub-desc p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 강연 카드 */
+    .section-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin: 16px 16px 0;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-title-label {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent);
+      background: #eff6ff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      letter-spacing: 0.2px;
+    }
+
+    .session-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      letter-spacing: -0.4px;
+      word-break: keep-all;
+    }
+
+    .session-speaker {
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .session-speaker span {
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .session-desc {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #475569;
+      word-break: keep-all;
+    }
+
+    /* 증정 배너 */
+    .gift-notice {
+      margin-top: 14px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #92400e;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .gift-notice svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #d97706;
+    }
+
+    /* 일정/장소 */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-label {
+      width: 48px;
+      font-weight: 700;
+      color: #64748b;
+      flex-shrink: 0;
+    }
+
+    .info-value {
+      color: #0f172a;
+      font-weight: 600;
+      word-break: keep-all;
+    }
+
+    .info-sub {
+      display: block;
+      font-size: 12.5px;
+      color: #64748b;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* 폼 영역 */
+    .form-section {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      margin: 16px 16px 30px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-heading {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+      letter-spacing: -0.4px;
+    }
+
+    .form-subtext {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .form-label .req {
+      color: #dc2626;
+      margin-left: 2px;
+    }
+
+    .input-text {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      color: #0f172a;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #fff;
+    }
+
+    .input-text:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .radio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .radio-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .radio-card {
+      position: relative;
+    }
+
+    .radio-card input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 8px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+
+    .radio-card input:checked + .radio-btn {
+      background: #eff6ff;
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+      color: #ffffff;
+      padding: 16px;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(30, 64, 175, 0.35);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #1e40af 0%, #172554 100%);
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      animation: modalFadeIn 0.25s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-icon {
+      width: 60px;
+      height: 60px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+
+    .modal-confirm-btn {
+      width: 100%;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 13px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- 상단 일러스트 배너 (내장 벡터 그래픽으로 어떤 환경에서도 즉시 표시됨) -->
+    <div class="banner-wrapper" id="bannerContainer">
+      <svg viewBox="0 0 680 360" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <!-- 배경 -->
+        <rect width="680" height="360" fill="#a4d7c6"/>
+        
+        <!-- 실험실 선반 및 유리 기구 -->
+        <line x1="0" y1="110" x2="220" y2="110" stroke="#333" stroke-width="4.5"/>
+        <line x1="0" y1="117" x2="220" y2="117" stroke="#333" stroke-width="2"/>
+        <rect x="5" y="45" width="30" height="65" fill="#f0fdf4" stroke="#333" stroke-width="3"/>
+        <path d="M 40 108 C 45 40, 65 40, 70 108 C 75 40, 95 40, 100 108 C 105 40, 125 40, 130 108" fill="none" stroke="#333" stroke-width="3.5"/>
+        <path d="M 155 35 L 165 35 L 165 60 L 185 108 L 135 108 L 155 60 Z" fill="#f8fafc" stroke="#333" stroke-width="3"/>
+        
+        <!-- 우측 차트 보드 -->
+        <rect x="480" y="20" width="200" height="180" rx="8" fill="#ffffff" stroke="#333" stroke-width="4"/>
+        <rect x="495" y="35" width="185" height="150" fill="#fafafa" stroke="#ddd" stroke-width="1.5"/>
+        <path d="M 505 130 Q 525 80 545 120 T 585 95 T 625 110 T 665 80" fill="none" stroke="#f59e0b" stroke-width="3.5"/>
+        <path d="M 505 160 Q 535 150 565 110 T 605 130 T 645 80 T 675 120" fill="none" stroke="#ec4899" stroke-width="3.5"/>
+
+        <!-- 책상 바닥면 -->
+        <rect x="0" y="280" width="680" height="80" fill="#94a3b8" stroke="#333" stroke-width="4"/>
+        <line x1="0" y1="280" x2="680" y2="280" stroke="#1e293b" stroke-width="4.5"/>
+
+        <!-- 왼쪽 골드 코인 화분 2개 -->
+        <polygon points="25,230 105,230 95,295 35,295" fill="#d99b77" stroke="#333" stroke-width="3.5"/>
+        <rect x="20" y="222" width="90" height="16" rx="4" fill="#cb8a65" stroke="#333" stroke-width="3.5"/>
+        <path d="M 65 222 L 65 180" stroke="#22c55e" stroke-width="6"/>
+        <path d="M 65 195 Q 35 190 30 175 Q 50 165 65 185" fill="#4ade80" stroke="#333" stroke-width="3"/>
+        <circle cx="68" cy="145" r="28" fill="#eab308" stroke="#333" stroke-width="3.5"/>
+        <circle cx="68" cy="145" r="21" fill="#facc15" stroke="#ca8a04" stroke-width="2.5"/>
+
+        <polygon points="90,265 150,265 142,302 98,302" fill="#d99b77" stroke="#333" stroke-width="3"/>
+        <rect x="86" y="258" width="68" height="12" rx="3" fill="#cb8a65" stroke="#333" stroke-width="3"/>
+        <path d="M 120 258 Q 105 240 95 245 Q 105 260 120 258" fill="#4ade80" stroke="#333" stroke-width="2.5"/>
+        <path d="M 120 258 Q 135 238 145 245 Q 135 260 120 258" fill="#4ade80" stroke="#333" stroke-width="2.5"/>
+
+        <!-- 코인 탑 (왼쪽) -->
+        <ellipse cx="205" cy="275" rx="26" ry="7" fill="#facc15" stroke="#333" stroke-width="3"/>
+        <ellipse cx="205" cy="265" rx="26" ry="7" fill="#facc15" stroke="#333" stroke-width="3"/>
+        <ellipse cx="205" cy="255" rx="26" ry="7" fill="#facc15" stroke="#333" stroke-width="3"/>
+
+        <ellipse cx="235" cy="285" rx="20" ry="6" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+        <ellipse cx="235" cy="277" rx="20" ry="6" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+        <ellipse cx="235" cy="269" rx="20" ry="6" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+        <ellipse cx="235" cy="261" rx="20" ry="6" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+
+        <!-- 분홍색 계산기 -->
+        <g transform="rotate(-15 310 300)">
+          <rect x="280" y="270" width="56" height="75" rx="6" fill="#fbcfe8" stroke="#333" stroke-width="3"/>
+          <rect x="287" y="277" width="42" height="18" rx="3" fill="#ffffff" stroke="#333" stroke-width="2"/>
+          <!-- 버튼들 -->
+          <rect x="288" y="300" width="8" height="8" rx="2" fill="#fff" stroke="#333" stroke-width="1.5"/>
+          <rect x="304" y="300" width="8" height="8" rx="2" fill="#fff" stroke="#333" stroke-width="1.5"/>
+          <rect x="320" y="300" width="8" height="8" rx="2" fill="#fff" stroke="#333" stroke-width="1.5"/>
+          <rect x="288" y="313" width="8" height="8" rx="2" fill="#fff" stroke="#333" stroke-width="1.5"/>
+          <rect x="304" y="313" width="8" height="8" rx="2" fill="#fff" stroke="#333" stroke-width="1.5"/>
+          <rect x="320" y="313" width="8" height="8" rx="2" fill="#fff" stroke="#333" stroke-width="1.5"/>
+        </g>
+
+        <!-- 코인 탑 (오른쪽) -->
+        <ellipse cx="425" cy="285" rx="24" ry="7" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+        <ellipse cx="425" cy="276" rx="24" ry="7" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+        <ellipse cx="425" cy="267" rx="24" ry="7" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+        <ellipse cx="425" cy="258" rx="24" ry="7" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+        <ellipse cx="425" cy="249" rx="24" ry="7" fill="#facc15" stroke="#333" stroke-width="2.5"/>
+
+        <!-- 왕개미 몸통 및 다리 -->
+        <ellipse cx="320" cy="280" rx="65" ry="50" fill="#60a5fa" stroke="#333" stroke-width="4"/>
+        <path d="M 270 295 Q 260 315 285 320" fill="none" stroke="#333" stroke-width="3"/>
+        <path d="M 350 280 Q 400 270 425 240" fill="none" stroke="#333" stroke-width="3"/>
+
+        <!-- 개미 머리 -->
+        <circle cx="355" cy="180" r="105" fill="#67b2fc" stroke="#333" stroke-width="4.5"/>
+
+        <!-- 눈과 미소 -->
+        <circle cx="349" cy="176" r="4.5" fill="#111"/>
+        <circle cx="372" cy="176" r="4.5" fill="#111"/>
+        <path d="M 324 207 Q 338 230 360 220" fill="none" stroke="#333" stroke-width="4" stroke-linecap="round"/>
+
+        <!-- 황금 왕관 -->
+        <polygon points="275,108 285,60 315,90 350,55 352,100" fill="#eab308" stroke="#333" stroke-width="4"/>
+
+        <!-- 더듬이 2개 -->
+        <path d="M 285 85 Q 280 50 278 15" fill="none" stroke="#333" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M 330 75 Q 348 45 350 10" fill="none" stroke="#333" stroke-width="3.5" stroke-linecap="round"/>
+
+        <!-- 손에 든 황금 코인 -->
+        <circle cx="445" cy="235" r="23" fill="#facc15" stroke="#333" stroke-width="3.5"/>
+        <circle cx="445" cy="235" r="17" fill="#fde047" stroke="#ca8a04" stroke-width="2"/>
+
+        <!-- 비커와 달러 지폐 삼각 플라스크 -->
+        <rect x="495" y="278" width="80" height="75" rx="3" fill="#ffffff" opacity="0.85" stroke="#333" stroke-width="3"/>
+        <path d="M 505 320 L 565 320 L 565 350 L 505 350 Z" fill="#facc15" opacity="0.8"/>
+        <line x1="505" y1="290" x2="515" y2="290" stroke="#333" stroke-width="2"/>
+        <line x1="505" y1="300" x2="520" y2="300" stroke="#333" stroke-width="2"/>
+        <line x1="505" y1="310" x2="515" y2="310" stroke="#333" stroke-width="2"/>
+
+        <path d="M 605 175 L 630 175 L 630 230 L 680 325 L 560 325 L 605 230 Z" fill="#ffffff" opacity="0.85" stroke="#333" stroke-width="3.5"/>
+        <!-- 플라스크 안 달러 지폐 -->
+        <g transform="rotate(-18 620 290)">
+          <rect x="580" y="275" width="70" height="38" rx="3" fill="#86efac" stroke="#333" stroke-width="2"/>
+          <circle cx="615" cy="294" r="11" fill="#4ade80" stroke="#16a34a" stroke-width="1.5"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- 헤더 콘텐츠 -->
+    <header class="header-content">
+      <div class="badge-wrap">
+        <span class="badge badge-primary">2027 대한민국 재테크 박람회</span>
+        <span class="badge badge-gold">조선멤버십 회원 특별 초청</span>
+      </div>
+      <h1 class="main-title">조선멤버십 회원을 위한<br>실전 재테크 수업</h1>
+      <div class="sub-desc">
+        <p>AI 거품 논란부터 금리·환율 불안, 세금 제도 변화까지. 2027년, 내 자산을 지키고 불리려면 재테크 전략부터 다시 짜야 합니다.</p>
+        <p>조선일보 ‘왕개미연구소’가 새해 투자 시장을 좌우할 핵심 변수 6가지를 짚어드립니다. 21년 경력의 증시 베테랑 박승영 한화투자증권 PLUS자산전략팀장은 데이터를 바탕으로 2027년에 사야 할 자산과 피해야 할 자산을 콕 집어 알려드립니다.</p>
+      </div>
+    </header>
+
+    <!-- 세션 1 -->
+    <section class="section-card">
+      <span class="card-title-label">강연 1</span>
+      <h2 class="session-title">돈 버는 길목에 서라, 꼭 알아야 할 재테크 변수 6가지</h2>
+      <div class="session-speaker">
+        <span>강연자 :</span> 이경은 조선일보 왕개미연구소장
+      </div>
+      <p class="session-desc">
+        배당금만으로 먹고사는 노후, 가능할까요? 건강보험료는 왜 이렇게 오를까요? 2027년 양띠해, 내 자산을 지키고 불릴 방법을 6가지 핵심 키워드로 정리합니다. 배당금 생활의 현실과 한계, 고금리 시기 자금 운용법, 보험·연금 점검 포인트, 건보료·세금 줄이는 절세 상품 활용법까지, 바로 써먹을 수 있는 실전 노하우를 정리해 드립니다.
+      </p>
+    </section>
+
+    <!-- 세션 2 -->
+    <section class="section-card">
+      <span class="card-title-label">강연 2</span>
+      <h2 class="session-title">2027년에 사야 할 자산, 버려야 할 자산</h2>
+      <div class="session-speaker">
+        <span>강연자 :</span> 박승영 한화투자증권 PLUS자산전략팀장
+      </div>
+      <p class="session-desc">
+        내년에도 지금 가진 자산이 답일까요? 2027년 자산시장 방향을 박승영 한화투자증권 PLUS자산전략팀장이 데이터로 짚어드립니다. 사야 할 자산과 버려야 할 자산, 막연한 전망이 아닌 숫자와 근거로 정리합니다. 내 포트폴리오를 점검하고 2027년 자산 배분의 기준을 세워 보세요.
+      </p>
+      <div class="gift-notice">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        <div><strong>현장 참석자 전원 증정:</strong> 한화투자증권 PLUS자산전략팀이 특별 제작한 <strong>‘2027 자산 배분 시크릿 리포트’</strong>를 드립니다. 또 다른 깜짝 선물도 마련돼 있어요.</div>
+      </div>
+    </section>
+
+    <!-- 일정 및 장소 -->
+    <section class="section-card">
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-label">일시</div>
+          <div class="info-value">2026년 11월 28일(토) 오후 2시 30분 ~ 4시</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">장소</div>
+          <div class="info-value">
+            서울 강남구 대치동 학여울역 1번 출구 SETEC 전시장 2층 컨퍼런스룸
+            <span class="info-sub">지하철 3호선 학여울역 1번 출구 도보 1분</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 참가 신청 폼 -->
+    <section class="form-section">
+      <h2 class="form-heading">참가 신청하고 설문 답하기</h2>
+      <p class="form-subtext">원활한 좌석 배정과 리포트 준비를 위해 정보를 입력해 주세요.</p>
+
+      <form id="rsvpForm">
+        <div class="form-group">
+          <label class="form-label" for="userName">이름 <span class="req">*</span></label>
+          <input type="text" id="userName" name="name" class="input-text" placeholder="성함을 입력해 주세요" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="userPhone">휴대전화 번호 <span class="req">*</span></label>
+          <input type="tel" id="userPhone" name="phone" class="input-text" placeholder="010-0000-0000" maxlength="13" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">연령대 <span class="req">*</span></label>
+          <div class="radio-grid">
+            <label class="radio-card">
+              <input type="radio" name="age" value="20대 이하" required>
+              <div class="radio-btn">20대 이하</div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="age" value="30대">
+              <div class="radio-btn">30대</div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="age" value="40대">
+              <div class="radio-btn">40대</div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="age" value="50대" checked>
+              <div class="radio-btn">50대</div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="age" value="60대 이상">
+              <div class="radio-btn">60대 이상</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">참석 여부 <span class="req">*</span></label>
+          <div class="radio-grid-2">
+            <label class="radio-card">
+              <input type="radio" name="attendance" value="참석" checked id="attendYes">
+              <div class="radio-btn">참석</div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="attendance" value="불참" id="attendNo">
+              <div class="radio-btn">불참</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" id="guestCountGroup">
+          <label class="form-label">참석자 수 <span class="req">*</span></label>
+          <div class="radio-grid-2">
+            <label class="radio-card">
+              <input type="radio" name="guestCount" value="1명" checked>
+              <div class="radio-btn">1명</div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="guestCount" value="2명">
+              <div class="radio-btn">2명</div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">참가 신청 완료하기</button>
+      </form>
+    </section>
+  </div>
+
+  <!-- 완료 모달 -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="modal-title" id="modalTitle">신청이 완료되었습니다</h3>
+      <p class="modal-desc" id="modalDesc">
+        2027 대한민국 재테크 박람회 특별 강연 접수가 정상 완료되었습니다.
+      </p>
+      <button type="button" class="modal-confirm-btn" id="modalCloseBtn">확인</button>
+    </div>
+  </div>
+
+  <script>
+    // 로컬 폴더에 이미지 파일이 실제로 있을 경우 실물 파일로 우선 교체
+    (function checkLocalBanner() {
+      const bannerContainer = document.getElementById('bannerContainer');
+      const testImg = new Image();
+      testImg.src = '스크린샷 2026-11-05 183000_4.png';
+      testImg.onload = function() {
+        bannerContainer.innerHTML = '<img src="' + testImg.src + '" alt="왕개미연구소 일러스트" class="banner-img">';
+      };
+      testImg.onerror = function() {
+        // 파일명이 다를 경우 대비 2차 시도
+        const altImg = new Image();
+        altImg.src = '스크린샷 2026-11-05 183000.png';
+        altImg.onload = function() {
+          bannerContainer.innerHTML = '<img src="' + altImg.src + '" alt="왕개미연구소 일러스트" class="banner-img">';
+        };
+      };
+    })();
+
+    // 구글 스프레드시트 배포 URL 연동
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx26ZrX9Ljg2SKTBX9HXfUoq-VV-g-cT5h3yC3EWhXkAyhT9p2lPmf4cky31pDp2M-S8Q/exec';
+
+    // 휴대폰 번호 010 자동 하이픈
+    const phoneInput = document.getElementById('userPhone');
+    phoneInput.addEventListener('input', function(e) {
+      let val = e.target.value.replace(/[^0-9]/g, '');
+      if (val.length > 3 && val.length <= 7) {
+        val = val.slice(0, 3) + '-' + val.slice(3);
+      } else if (val.length > 7) {
+        val = val.slice(0, 3) + '-' + val.slice(3, 7) + '-' + val.slice(7, 11);
+      }
+      e.target.value = val;
+    });
+
+    // 불참 선택 시 참석자 수 제어
+    const attendYes = document.getElementById('attendYes');
+    const attendNo = document.getElementById('attendNo');
+    const guestCountGroup = document.getElementById('guestCountGroup');
+
+    function toggleGuestGroup() {
+      if (attendNo.checked) {
+        guestCountGroup.classList.add('hidden');
+      } else {
+        guestCountGroup.classList.remove('hidden');
+      }
+    }
+    attendYes.addEventListener('change', toggleGuestGroup);
+    attendNo.addEventListener('change', toggleGuestGroup);
+
+    // 구글 시트로 데이터 전송
+    const form = document.getElementById('rsvpForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const modal = document.getElementById('confirmModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const attendanceVal = document.querySelector('input[name="attendance"]:checked')?.value || '참석';
+      const guestCountVal = attendanceVal === '불참' ? '0명' : (document.querySelector('input[name="guestCount"]:checked')?.value || '1명');
+
+      const payload = {
+        name: document.getElementById('userName').value.trim(),
+        phone: document.getElementById('userPhone').value.trim(),
+        age: document.querySelector('input[name="age"]:checked')?.value || '',
+        attendance: attendanceVal,
+        guestCount: guestCountVal
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = '접수 처리 중...';
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (attendanceVal === '불참') {
+          modalTitle.innerText = '불참 처리가 완료되었습니다';
+          modalDesc.innerHTML = '회신해 주셔서 감사합니다.<br>다음 강연에서 뵙겠습니다.';
+        } else {
+          modalTitle.innerText = '신청이 완료되었습니다';
+          modalDesc.innerHTML = '현장 참석자 전원에게 <strong>‘2027 자산 배분 시크릿 리포트’</strong>를 드립니다.<br>또 다른 깜짝 선물도 마련돼 있으니 행사 당일 뵙겠습니다.';
+        }
+
+        modal.classList.add('active');
+        form.reset();
+        toggleGuestGroup();
+      } catch (err) {
+        console.error(err);
+        alert('신청 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = '참가 신청 완료하기';
+      }
+    });
+
+    modalCloseBtn.addEventListener('click', function() {
+      modal.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
